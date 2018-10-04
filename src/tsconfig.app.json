@@ -9,5 +9,14 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "baseUrl": "",
+  "paths": {
+    "@angular/*": [
+      "../node_modules/@angular/*"
+    ],
+    "@penoc-sdk/*": [
+      "../node_modules/penoc-sdk/*"
+    ]
+  }
 }
