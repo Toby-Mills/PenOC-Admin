@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
-import { ApiService } from '../../../../node_modules/penoc-sdk/services/api.service';
+import { ApiService } from 'penoc-sdk/services/api.service';
 
 @Component({
   moduleId: module.id,
@@ -29,11 +29,10 @@ export class SignInComponent {
                 if (authenticated) {
                     this.authenticated.emit(true);
                     this.authenticating = false;
-                }
-            },
-            error => {
+                }else{
                 this.authenticationFailed = true;
                 this.authenticating = false;
+                }
             });
     }
 

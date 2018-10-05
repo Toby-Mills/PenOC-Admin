@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LookupService } from '../../../../node_modules/penoc-sdk/services/lookup.service';
-import { OEventModel } from '../../../../node_modules/penoc-sdk/models/oevent.model';
-import { CompetitorModel } from '../../../../node_modules/penoc-sdk/models/competitor.model';
-import { OEventService } from '../../../../node_modules/penoc-sdk/services/oevent.service';
+import { LookupService } from 'penoc-sdk/services/lookup.service';
+import { OEventModel } from 'penoc-sdk/models/oevent.model';
+import { CompetitorModel } from 'penoc-sdk/models/competitor.model';
+import { OEventService } from 'penoc-sdk/services/oevent.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -33,16 +33,14 @@ export class OEventComponent {
         this.route.params.forEach((params: Params) => {
             let id = + params['eventId'];
             if (id > 0) {
-                this.oeventService.getOEvent(id).then((data) => {
-                    data.subscribe((eventData) => {
-                        this.oevent = eventData.json()[0];
-                        oEventDate =  new Date(this.oevent.date);
-                         // add 2 hours (in milliseconds) for South African Time Zone
-                        oEventDate.setTime(oEventDate.getTime() + 2 * 60 * 60 * 1000);
-                        // truncate to only the date portion
-                        this.oevent.date =  oEventDate.toISOString().substring(0, 10);
+                this.oeventService.getOEvent(id).subscribe((eventData) => {
+                    this.oevent = eventData.json()[0];
+                    oEventDate =  new Date(this.oevent.date);
+                        // add 2 hours (in milliseconds) for South African Time Zone
+                    oEventDate.setTime(oEventDate.getTime() + 2 * 60 * 60 * 1000);
+                    // truncate to only the date portion
+                    this.oevent.date =  oEventDate.toISOString().substring(0, 10);
 
-                    });
                 });
             } else {
                 this.oevent = new OEventModel();
@@ -89,20 +87,16 @@ export class OEventComponent {
 
     public saveOEvent(): void {
         this.oeventService.putOEvent(this.oevent)
-            .then(data => {
-                data.subscribe(result => {
-                    this.loadOEvent();
-                } );
-            });
+        .subscribe(result => {
+                this.loadOEvent();
+            } );
     }
 
     public createOEvent(): void {
         this.oeventService.postOEvent(this.oevent)
-            .then(data => {
-                data.subscribe(result => {
-                    this.loadOEvent();
-                } );
-            });
+            .subscribe(result => {
+                this.loadOEvent();
+            } );
     }
 
 }

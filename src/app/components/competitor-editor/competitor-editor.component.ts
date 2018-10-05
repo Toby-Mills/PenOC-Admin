@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { LookupService } from '../../../../node_modules/penoc-sdk/services/lookup.service';
-import { CompetitorService } from '../../../../node_modules/penoc-sdk/services/competitor.service';
-import { CompetitorModel } from '../../../../node_modules/penoc-sdk/models/competitor.model';
+import { LookupService } from 'penoc-sdk/services/lookup.service';
+import { CompetitorService } from 'penoc-sdk/services/competitor.service';
+import { CompetitorModel } from 'penoc-sdk/models/competitor.model';
 
 @Component({
   selector: 'penoc-admin-competitor-editor',
@@ -84,14 +84,12 @@ export class CompetitorEditorComponent implements OnInit {
       }
   }
 
-  public mergeTargetKeyPressed(mergeTargetId: number) {
-      this.mergeTarget = undefined;
-      if (mergeTargetId > 0) {
-          this.competitorService.getCompetitor(mergeTargetId).then(res => {
-              res.subscribe(data => {
-                  this.mergeTarget = data.json()[0];
-              });
-          });
+    public mergeTargetKeyPressed(mergeTargetId: number) {
+        this.mergeTarget = undefined;
+        if (mergeTargetId > 0) {
+            this.competitorService.getCompetitor(mergeTargetId).subscribe(data => {
+            this.mergeTarget = data.json()[0];
+        });
       }
   }
 

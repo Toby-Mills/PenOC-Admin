@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsModel } from '../../../../node_modules/penoc-sdk/models/news.model';
+import { NewsModel } from 'penoc-sdk/models/news.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { NewsService } from '../../../../node_modules/penoc-sdk/services/news.service';
+import { NewsService } from 'penoc-sdk/services/news.service';
 
 @Component({
     moduleId: module.id,
@@ -23,11 +23,9 @@ public loadNewsItem() {
 this.route.params.forEach((params: Params) => {
             let id = + params['id'];
             if (id > 0) {
-                this.newsService.getNewsItems(id).then((data) => {
-                    data.subscribe((newsData) => {
-                        this.newsItem = newsData.json()[0];
-                        this.newsItem.date = new Date(this.newsItem.date).toISOString().substring(0, 10);
-                    });
+                this.newsService.getNewsItems(id).subscribe((newsData) => {
+                    this.newsItem = newsData.json()[0];
+                    this.newsItem.date = new Date(this.newsItem.date).toISOString().substring(0, 10);
                 });
             } else {
                 this.newsItem = new NewsModel();
@@ -53,14 +51,10 @@ this.route.params.forEach((params: Params) => {
 
     public saveNewsItem(): void {
         this.newsService.putNewsItem(this.newsItem)
-            .then(data => {
-                data.subscribe(() => { this.loadNewsItem() })
-            });
+            .subscribe(() => { this.loadNewsItem() })
     }
     public createNewsItem(): void {
         this.newsService.postNewsItem(this.newsItem)
-            .then(data => {
-                data.subscribe(() => { this.loadNewsItem(); });
-            });
+            .subscribe(() => { this.loadNewsItem(); });
     }
 }

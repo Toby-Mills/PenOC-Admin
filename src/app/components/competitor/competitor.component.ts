@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { LookupService } from '../../../../node_modules/penoc-sdk/services/lookup.service';
-import { CompetitorService } from '../../../../node_modules/penoc-sdk/services/competitor.service';
-import { CompetitorModel } from '../../../../node_modules/penoc-sdk/models/competitor.model';
+import { LookupService } from 'penoc-sdk/services/lookup.service';
+import { CompetitorService } from 'penoc-sdk/services/competitor.service';
+import { CompetitorModel } from 'penoc-sdk/models/competitor.model';
 import { PeoplePipe } from '../../pipes/people.pipe';
 import { CompetitorEditorComponent } from '../competitor-editor/competitor-editor.component';
 

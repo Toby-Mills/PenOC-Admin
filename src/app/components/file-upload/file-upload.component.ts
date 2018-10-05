@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { UploadService } from '../../../../node_modules/penoc-sdk/services/upload.service';
+import { UploadService } from 'penoc-sdk/services/upload.service';
 
 @Component({
     moduleId: module.id,

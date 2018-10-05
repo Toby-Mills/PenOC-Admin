@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OEventModel } from '../../../../node_modules/penoc-sdk/models/oevent.model';
-import { OEventService } from '../../../../node_modules/penoc-sdk/services/oevent.service';
+import { OEventModel } from 'penoc-sdk/models/oevent.model';
+import { OEventService } from 'penoc-sdk/services/oevent.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -67,10 +67,8 @@ export class OEventListComponent {
 
 
         this.oeventService.getOEvent(null, this.searchName, this.searchVenue, searchDateFrom, searchDateTo)
-            .then(data => {
-                data.subscribe(oeventData => {
-                    this.oeventList = oeventData.json();
-                })
+            .subscribe(oeventData => {
+                this.oeventList = oeventData.json();
             });
     }
 

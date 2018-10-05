@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CompetitorModel } from '../../../../node_modules/penoc-sdk/models/competitor.model';
-import { CompetitorService } from '../../../../node_modules/penoc-sdk/services/competitor.service';
+import { CompetitorModel } from 'penoc-sdk/models/competitor.model';
+import { CompetitorService } from 'penoc-sdk/services/competitor.service';
 import { Router } from '@angular/router';
 import { ModalMessageBoxComponent } from '../modal-message-box/modal-message-box.component';
 @Component({
@@ -24,11 +24,11 @@ export class CompetitorListComponent implements OnInit {
 
   public editCompetitor(event: MouseEvent, competitorId: Number) {
     if (event.srcElement.nodeName.toLowerCase() === 'td'){
-        this.competitorService.getCompetitor(competitorId).then(data => data.subscribe(
+        this.competitorService.getCompetitor(competitorId).subscribe(
             competitorData => {
                 this.editingCompetitor = competitorData.json()[0];
             }
-        ));
+        )
     }
   }
 
