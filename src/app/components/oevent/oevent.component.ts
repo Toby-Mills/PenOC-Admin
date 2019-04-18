@@ -4,6 +4,7 @@ import { OEventModel } from 'penoc-sdk/models/oevent.model';
 import { CompetitorModel } from 'penoc-sdk/models/competitor.model';
 import { OEventService } from 'penoc-sdk/services/oevent.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
     moduleId: module.id,
@@ -16,11 +17,15 @@ export class OEventComponent {
     public venueList: Array<Object>;
     public clubList: Array<Object>;
     public loadOEventId: number;
+    private env;
 
     constructor(private lookupService: LookupService,
         private oeventService: OEventService,
         private router: Router,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute,
+    ) {
+        this.env = environment;
+     }
 
     ngOnInit(): any {
         this.lookupService.venueList.subscribe(venueData => this.venueList = venueData);

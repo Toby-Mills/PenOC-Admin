@@ -113,7 +113,7 @@ export class ResultListComponent implements ControlValueAccessor {
         hours = Number(newTimeString.substr(0, 2));
         minutes = Number(newTimeString.substr(3, 2));
         seconds = (Number(newTimeString.substr(6, 2)));
-        console.log(hours + ' ' + minutes + ' ' + seconds);
+
         switch (true) {
             case isNaN(hours):
             case hours > 23:

@@ -53,7 +53,7 @@
                         <span>Longitude:</span><input [(ngModel)]="oevent.coordinateLongitude" class="form-control" name="longitude" />
                     </dd>
                 </dl>
-                <img class="img-responsive" [src]="'http://maps.google.com/maps/api/staticmap?center=' + oevent.coordinateLatitude + ',' +  oevent.coordinateLongitude + '&markers=' + oevent.coordinateLatitude + ',' +  oevent.coordinateLongitude + '&zoom=10&size=300x300'" />
+                <img class="img-responsive" [src]="'http://maps.google.com/maps/api/staticmap?center=' + oevent.coordinateLatitude + ',' +  oevent.coordinateLongitude + '&markers=' + oevent.coordinateLatitude + ',' +  oevent.coordinateLongitude + '&zoom=10&size=300x300&key=' +this.env.googleMapsApiKey" />
             </div>          
         </div>
         <div class="row">
