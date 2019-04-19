@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { environment } from '../environments/environment';
 import { PenocSdkModule } from 'penoc-sdk/penoc-sdk.module';
 import { AppComponent } from './components/app/app.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -51,7 +52,7 @@ import { ResultTimePipe } from './pipes/result-time.pipe';
   imports: [
     BrowserModule,
     HttpModule,
-    PenocSdkModule.forRoot(),
+    PenocSdkModule.forRoot(environment),
     AppRoutingModule,
     FormsModule
   ],
